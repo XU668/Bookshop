@@ -1,0 +1,113 @@
+.content{
+    width: 1200px;
+    min-height: 200px;
+    margin: 0 auto;
+    background: #fff;
+}
+.loginFrom{
+    padding: 50px 25px 110px;
+}
+.loginName{
+    padding-right: 23px;
+    width: 212px;
+    overflow: hidden;
+    height: 24px;
+    line-height: 24px;
+}
+.loginName b{
+    
+    color: #333;
+    height: 24px;
+    font-size: 22px;
+    padding-left: 13px;
+    border-left: 3px solid #e60000;
+    font-weight: bold;
+}
+.From{
+    margin-top: 30px;
+    min-height: 100px;
+}
+.inputName{
+    height: 55px;
+    padding-bottom: 30px;
+}
+ .inputName .label{
+    float: left;
+    height: 42px;
+    padding-right: 23px;
+    line-height: 42px;
+    width: 360px;
+    text-align: right;
+}
+
+.inputName .label span{
+    font-size: 16px;
+    color: #333;
+}
+.inputName .inputWrap{
+    border-radius: 4px;
+    overflow: hidden;
+    float: left;
+    height: 50px;
+    border: 1px solid #dcdcdc;
+    width: 425px;
+    /* padding-right: 35px; */
+    display: flex;
+    align-items: center;
+}
+.inputName .inputWrap input{
+    color: #666;
+    border: none;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    text-indent: 10px;
+    
+}
+.inputName .phoneYZM input{
+    color: #666;
+    border: none;
+    height: 20px;
+    line-height: 20px;
+    text-indent: 10px
+    
+    
+}
+.inputName .Yanzhengma{
+    width: 243px;
+}
+.inputName .imgWrap{
+    width:110px ;
+    height: 50px;
+    border: 1pz solid #ccc;
+    float: left;
+    margin-left: 12px;
+    background: skyblue;
+}
+.inputName .changeImg{
+    float: left;
+    height: 50px;
+    line-height: 50px;
+}
+.inputName .changeImg a{
+    color: #1c51a1;
+    margin-left: 15px;
+    font-size: 14px;
+}
+.loginBtn{
+    width: 380px;
+    height: 50px;
+    margin: 10px auto;
+}
+.loginBtn a{
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 5px;
+    width: 380px;
+    text-align: center;
+    background: #e60000;
+    font-size: 16px;
+    color: #fff;
+    letter-spacing: 3px;
+}
