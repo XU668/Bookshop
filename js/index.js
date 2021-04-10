@@ -1,31 +1,192 @@
+$(function () {
+    $(".RXbang").find(".bookCur").first().css("display", "block");
+    $(".RXbang").find("li").mouseover(function () {
+        $(this).find(".bookCur").css("display", "block").end().siblings().find(".bookCur").css("display", "none");
+        $(this).find("p").css("display", "none").end().siblings().find("p").css("display", "block");
+        $(this).find("em").css("display", "none").end().siblings().find("em").css("display", "block");
 
-function tab(id) {//id 选项卡外框ID ，aEve按钮发生的事件
-    var oBox = document.getElementById(id);
-    //获取各个元素
-    var aBtn = oBox.getElementsByTagName('li');
-    var aCont = oBox.getElementsByClassName('xinshu');
+    })
+
+})
 
 
-    for (var i = 0; i < aBtn.length; i++) {
-        //aBtn[i].index = i; //为每个按钮自定义属性，该属性存放每个按钮的下标
-        aBtn[i].onclick = function () {
-            for (var j = 0; j < aBtn.length; j++) {
-                //aBtn[i].className = '';//清空所有按钮选中样式
-                //aCont[j].className = '';//清空所有内容样式
-                //aCont[j].style.display = "none";
-                if (j != i) {
-                    aCont[j].classList.remove('on');
-                }
+$(function () {
 
+    $("#shoutui li").click(function () {
+        var index = $(this).index();
+        console.log(index);
+        $(".tab-con1 .xinshu").eq(index).show().siblings().hide();
+
+    })
+})
+$(function () {
+
+    $("#wenxue li").click(function () {
+        var index = $(this).index();
+        console.log(index);
+        $(".tab-con2 .xinshu").eq(index).fadeIn("fast").siblings().fadeOut("fast");
+    })
+})
+$(function () {
+
+    $(".HotNav li").click(function () {
+        var index = $(this).index();
+        console.log(index);
+        $(".HotUL .RXbang").eq(index).show().siblings().hide();
+    })
+})
+class Slider {
+    constructor(id) {
+        //轮播区域
+        this.sliderBox = document.getElementById(id);
+        //轮播区块
+        this.sliderUl = this.sliderBox.children[0];
+        this.sliderLi = this.sliderUl.children;
+        //区块的个数以及单位宽
+        this.len = this.sliderLi.length;
+        this.perWidth = this.sliderLi[0].offsetWidth;
+        //设置sliderUl的宽度
+        this.sliderUl.style.width = this.len * this.perWidth + "px";
+
+        //计数器
+        this.count = 0;
+        //定时器
+        this.timer = null;
+
+        //任何一个轮播实例都能自动播放
+        this.autoPlay();
+
+        this.clear();
+
+    }
+    //自动轮播的方法
+    autoPlay() {
+        this.timer = setInterval(() => {
+            this.move();
+        }, 3000);
+    }
+    //轮播
+    move() {
+        this.count++;
+
+        if (this.count == this.len) {
+            this.sliderUl.style.left = 0;
+            this.count = 1;
+        }
+
+        if (this.count == -1) {
+            this.sliderUl.style.left = -this.perWidth * (this.len - 1) + "px";
+            this.count = this.len - 2;
+        }
+
+        if (this.nums) {
+            for (let i = 0; i < this.nums.length; i++) {
+                this.nums[i].className = "";
             }
-            //this.className = 'active';//为当前按钮添加选中样式
-            //aCont[this.index].classList.add('on');//this.index对应当前按钮的下标  为当前所对应的内容添加显示样式
-            //aCont[i].classList.add('on');
-            //aCont[i].style.display = "block";
+            if (this.count == this.len - 1) {
+                this.nums[0].className = "hover";
+            } else {
+                this.nums[this.count].className = "hover";
+            }
+        }
+
+
+        startMove(this.sliderUl, {
+            "left": -this.count * this.perWidth
+        });
+    }
+    //添加箭头
+    addArr() {
+        let oDiv = document.createElement("div");
+        oDiv.className = "arr";
+        oDiv.innerHTML = "<span>&lt;</span><span>&gt</span>";
+        this.sliderBox.appendChild(oDiv);
+        let prev = oDiv.children[0]; //左箭头
+        prev.onclick = () => {
+            this.count -= 2;
+            this.move();
+        }
+
+        let next = oDiv.children[1]; //右箭头
+        next.onclick = () => {
+            this.move();
         }
     }
+    //添加小圆点
+    addPoint() {
+        let oUl = document.createElement("ul");
+        oUl.className = "num";
+        let str = "";
+        for (let i = 0; i < this.len - 1; i++) {
+            str += `<li>${i + 1}</li>`;
+        }
+        oUl.innerHTML = str;
+
+        this.sliderBox.appendChild(oUl);
+        this.nums = oUl.children;
+        this.nums[0].className = "hover";
+
+        for (let j = 0; j < this.nums.length; j++) {
+            this.nums[j].onmouseover = () => {
+                this.count = j - 1;
+                this.move();
+            }
+        }
+
+    }
+    clear() {
+        this.sliderBox.onmouseover = () => {
+            clearInterval(this.timer);
+        }
+        this.sliderBox.onmouseout = () => {
+            this.timer = setInterval(() => {
+                this.move();
+            }, 3000)
+        }
+    }
+
 }
-window.onload = function () {//网页加载结束后执行
-    tab('xxk1');//调用函数
-    //tab('xxk1', 'onmousemove');
+
+//domobj 要发生变化的那个DOM对象 targetData 要发生哪些变化 {"width":500,"height":500}
+function startMove(domobj, targetData, fn) {
+    clearInterval(domobj.timer);
+    domobj.timer = setInterval(() => {
+        let flag = true; //假设都达到了目标值
+        for (let styleName in targetData) {
+            if (styleName == "opacity") {
+                var iCur = parseInt(getStyle(domobj, "opacity") * 100); //让透明度的值由0-1变成0-100
+            } else {
+                var iCur = parseInt(getStyle(domobj, styleName));
+            }
+
+            let iTar = targetData[styleName];
+            let iSpeed = (iTar - iCur) / 8;
+            iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+            if (styleName == "opacity") {
+                domobj.style.opacity = (iCur + iSpeed) / 100;
+                domobj.style.filter = "alpha(opacity=" + (iCur + iSpeed) + ")";
+            } else {
+                domobj.style[styleName] = iCur + iSpeed + "px";
+            }
+
+
+            if (iCur != iTar) {
+                flag = false; //只要有一个没有达到目标值
+            }
+        }
+        if (flag) {
+            clearInterval(domobj.timer);
+            if (fn) {
+                fn();
+            }
+        }
+
+    }, 20)
+}
+
+function getStyle(domobj, attr) {
+    if (window.getComputedStyle) {
+        return getComputedStyle(domobj, null)[attr];
+    }
+    return domobj.currentStyle[attr];
 }
