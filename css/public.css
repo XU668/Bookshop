@@ -49,3 +49,75 @@ body{
     text-decoration:underline;
     color: #e60000;
 }
+#right-nav {
+    width: 45px;
+    height: 100%;
+    position: fixed;
+    top: 50%;
+    right: 0;
+    z-index: 20;
+    margin: -90px 0 0;
+}
+#right-nav-list1 {
+    position: relative;
+    right: 0;
+    top: 0;
+    z-index: 20;
+}
+#right-nav li.first, #right-nav li.first > a {
+    border-radius: 3px 0 0 0;
+}
+#right-nav li {
+    position: relative;
+    left: 0;
+    top: 0;
+    height: 36px;
+    width: 45px;
+    text-align: center;
+    background: #999999;
+}
+#right-nav li > a {
+    width: 100%;
+    display: block;
+    background: #999999;
+    height: 35px;
+    box-sizing: border-box;
+}
+#right-nav li .iconWrap {
+    /* background: url(http://o.bookschina.com/images/nav6.jpg) no-repeat bottom center; */
+    height: 36px;
+    position: relative;
+}
+#right-nav li .iconWrap img {
+    border: 0;
+    vertical-align: middle;
+    margin-left: 15px;
+}
+#right-nav li .navMessage {
+    position: absolute;
+    right: -104px;
+    padding-right: 46px;
+    top: 0;
+    z-index: -1;
+    font-size: 12px;
+    background: #e60000;
+    
+    height: 35px;
+    width: 60px;
+    
+    text-align: center;
+    border-radius: 3px;
+   
+    transition: all linear 300ms;
+}
+#right-nav li .navMessage a{
+    color: #fff;
+    line-height: 35px;
+    text-align: right;
+}
+#right-nav li:hover >a{
+    background: #e60000;
+}
+#right-nav li:hover .navMessage{
+    right: 0px;
+}

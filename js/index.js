@@ -7,7 +7,7 @@ $(function () {
 
     })
 
-})
+});
 
 
 $(function () {
@@ -18,7 +18,7 @@ $(function () {
         $(".tab-con1 .xinshu").eq(index).show().siblings().hide();
 
     })
-})
+});
 $(function () {
 
     $("#wenxue li").click(function () {
@@ -26,7 +26,7 @@ $(function () {
         console.log(index);
         $(".tab-con2 .xinshu").eq(index).fadeIn("fast").siblings().fadeOut("fast");
     })
-})
+});
 $(function () {
 
     $(".HotNav li").click(function () {
@@ -34,7 +34,7 @@ $(function () {
         console.log(index);
         $(".HotUL .RXbang").eq(index).show().siblings().hide();
     })
-})
+});
 class Slider {
     constructor(id) {
         //轮播区域
@@ -145,7 +145,7 @@ class Slider {
         }
     }
 
-}
+};
 
 //domobj 要发生变化的那个DOM对象 targetData 要发生哪些变化 {"width":500,"height":500}
 function startMove(domobj, targetData, fn) {
@@ -182,11 +182,11 @@ function startMove(domobj, targetData, fn) {
         }
 
     }, 20)
-}
+};
 
 function getStyle(domobj, attr) {
     if (window.getComputedStyle) {
         return getComputedStyle(domobj, null)[attr];
     }
     return domobj.currentStyle[attr];
-}
+};

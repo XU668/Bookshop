@@ -13,50 +13,41 @@ window.onload = function () {
     // 勾选
     var noTip = document.querySelector(".noTip");
     // 自动生成商品
-    var arr = [{
-        img: "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1560222640.90428593.jpg?thumb=1&w=80&h=80",
-        titles: "小米「小爱老师」 4G网络尊享版 白色",
-        price: "999元",
-        count: "999元"
-    },
-    {
-        img: "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1543561468.82116708.jpg?thumb=1&w=80&h=80",
-        titles: "小黑鲨游戏 Type-C 耳机 黑色",
-        price: "99元",
-        count: "99元"
-    },
-    {
-        img: "https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1464615180.86261317.jpg?thumb=1&w=80&h=80",
-        titles: "米兔智能故事机 白色",
-        price: "199元",
-        count: "199元"
-    },
-    ]
-    var strs = "";
-    for (var i = 0; i < arr.length; i++) {
-        var imgsrc = arr[i].img;
-        var titles = arr[i].titles;
-        var itemprice = arr[i].price;
-        var count = arr[i].count;
-        strs +=
-            `<tr class="tlist">
-        <td class="c"><span class="iconfont icon-succ item"></span></td>
-        <td class="simg">
-            <img src="${imgsrc}" alt="" />
-        </td>
-        <td class="titles">${titles}</td>
-        <td class="price">${itemprice}</td>
-        <td class="number numbers">
-            <div class="nu">
-                <span class="iconfont icon-jianhao"></span><input type="text" value="1" class="shopNumber"/><span class="iconfont icon-hao"></span>
-                <div class="msg"></div>
-            </div>
-        </td>
-        <td class="count ic">${count}</td>
-        <td class="op"><span class="iconfont icon-X-"></span></td>
-    </tr>`
-    }
-    tbody.innerHTML += strs;
+    //数据展示
+    ajax({
+        url: "http://localhost:3000/carts",
+        type: "get",
+        success: function (res) {
+            res = JSON.parse(res);
+            let data = res[0].ProList;
+            let strs = "";
+            data.forEach(item => {
+                strs +=
+                    `<tr class="tlist">
+                <td class="c"><span class="iconfont icon-succ item"></span></td>
+                <td class="simg">
+                    <img src="${item.imgpath}" alt="" />
+                </td>
+                <td class="titles">${item.Title}</td>
+                <td class="price">${item.Price}</td>
+                <td class="number numbers">
+                    <div class="nu">
+                        <span class="iconfont icon-jianhao"></span><input type="text" value="1" class="shopNumber"/><span class="iconfont icon-hao"></span>
+                        <div class="msg"></div>
+                    </div>
+                </td>
+                <td class="count ic">${item.Price}</td>
+                <td class="op"><span class="iconfont icon-X-"></span></td>
+            </tr>`;
+            });
+            tbody.innerHTML += strs;
+
+
+
+        }
+    });
+
+
     // 全选按钮
     var all = document.querySelector(".all");
     //给tobdy添加点击事件，委托
@@ -142,7 +133,7 @@ window.onload = function () {
                 money();
                 number();
                 var itemBtns = tbody.querySelectorAll(".item");
-                console.log(itemBtns);
+                // console.log(itemBtns);
                 for (var i = 0; i < itemBtns.length; i++) {
                     if (itemBtns[i].className == "iconfont icon-succ item") {
                         all.className = "iconfont icon-succ all";
@@ -280,78 +271,26 @@ window.onload = function () {
     }
 
     var shopList = document.querySelector(".shopList")
-    var arrshop = [{
-        imgSrc: "https://cdn.cnbj0.fds.api.mi-img.com/b2c-miapp-a1/b474f7bb-10e1-ee92-f78f-d87231b0726a.jpg?thumb=1&w=180&h=180",
-        shopName: "小米AI音箱",
-        shopPrice: "199元",
-        shopTips: "117.8万人好评",
-    },
-    {
-        imgSrc: "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/413f38dda38c199d422a6ff453234ad4.jpg?thumb=1&w=180&h=180&f=webp&q=90",
-        shopName: "米家声波电动牙刷T100",
-        shopPrice: "39.9元",
-        shopTips: "177万人好评",
-    }, {
-        imgSrc: "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/d71b2748efea2b150b00bb1f30d8cf99.jpg?thumb=1&w=180&h=180&f=webp&q=90",
-        shopName: "MIJOY 小魔爪按摩器",
-        shopPrice: "9.9元",
-        shopTips: "18.6万人好评",
-    }, {
-        imgSrc: "https://i8.mifile.cn/b2c-mimall-media/64de04b0cb774f0b33ed4a00df0f9c3c!180x180.jpg",
-        shopName: "手机USB micro 数据线",
-        shopPrice: "19.9元",
-        shopTips: "57.8万人好评",
-    }, {
-        imgSrc: "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/32febc8b4df89cda9019aab1643b7eb8.jpg?thumb=1&w=180&h=180&f=webp&q=90",
-        shopName: "米家插电夜灯",
-        shopPrice: "39.9元",
-        shopTips: "7.8万人好评",
-    }, {
-        imgSrc: "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/4b762a0c59fd01f5c4068c61a9da56e7.jpg?thumb=1&w=180&h=180&f=webp&q=90",
-        shopName: "小米中性笔",
-        shopPrice: "24.9元",
-        shopTips: "13.8万人好评",
-    }, {
-        imgSrc: "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/cccefe4c39329ec01b587d114f64eab5.jpg?thumb=1&w=180&h=180&f=webp&q=90",
-        shopName: "米家智能压力IH电饭煲1S 3L",
-        shopPrice: "849元",
-        shopTips: "1.8万人好评",
-    }, {
-        imgSrc: "https://cdn.cnbj0.fds.api.mi-img.com/b2c-miapp-a1/b474f7bb-10e1-ee92-f78f-d87231b0726a.jpg?thumb=1&w=180&h=180",
-        shopName: "米家自动洗手机套装",
-        shopPrice: "69元",
-        shopTips: "41.8万人好评",
-    }, {
-        imgSrc: "https://cdn.cnbj0.fds.api.mi-img.com/b2c-miapp-a1/T1bXKjBQAT1RXrhCrK.jpg?thumb=1&w=180&h=180",
-        shopName: "7号彩虹电池（10粒）",
-        shopPrice: "199元",
-        shopTips: "203.8万人好评",
-    }, {
-        imgSrc: "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/f9f3e968c9390f44a589afa48e92c6eb.jpg?thumb=1&w=180&h=180&f=webp&q=90",
-        shopName: "贝医生防蛀健齿牙膏",
-        shopPrice: "12.9元",
-        shopTips: "56.8万人好评好评",
-    },
-    ]
-    var str = "";
-    for (var i = 0; i < arrshop.length; i++) {
-        var imgSrc = arrshop[i].imgSrc;
-        var shopName = arrshop[i].shopName;
-        var shopPrice = arrshop[i].shopPrice;
-        var shopTips = arrshop[i].shopTips;
-        str += ` <li class="shopitem">
-    <a href="javascript:">
-        <img src="${imgSrc}" alt="">
-        <p class="shop-name">${shopName}</p>
-        <p class="shop-price">${shopPrice}</p>
-        <p class="shop-tips">${shopTips}</p>
-    </a>
-    <div class="action">加入购物车</div>
-    </li>`
-    }
-    // 添加事件
-    // 事件委托
-    shopList.innerHTML = str;
+    ajax({
+        url: "http://localhost:3000/books",
+        type: "get",
+        success: function (res) {
+            res = JSON.parse(res);
+            var str = "";
+            for (var i = 0; i < 10; i++) {
+                str += ` <li class="shopitem">
+            <a href="javascript:">
+                <img src="${res[i].imgpath}" alt="">
+                <p class="shop-name">${res[i].Title}</p>
+                <p class="shop-price">${res[i].Price}</p>
+                <p class="shop-tips">${res[i].Author}</p>
+            </a>
+            <div class="action">加入购物车</div>
+            </li>`
+            }
+            shopList.innerHTML = str;
+        }
+    });
     shopList.onclick = function (event) {
         var event = event || window.event;
         var target = event.target || event.srcElement;
@@ -369,6 +308,58 @@ window.onload = function () {
             tr.innerHTML =
                 '<td class="c"><span class="iconfont icon-succ item btn"></span></td> <td class="simg"><img src="' + img + '" alt="" width=80px/></td> <td class="titles">' + shopName + '</td> <td class="price">' + shopPric + '</td><td class="number numbers"><div class="nu"><span class="iconfont icon-jianhao"></span><input type="text" value="1" class="shopNumber" /><span  class="iconfont icon-hao"></span><div class="msg">还可买 10 件以上 < /div></div></td><td class="count ic">' + shopPric + ' </td><td class="op"><span class="iconfont icon-X-"></span></td>';
             tbody.insertBefore(tr, tbody.children[1]);
+
+            ajax({
+                url: "http://localhost:3000/books",
+                type: "get",
+                success: function (res) {
+                    res = JSON.parse(res);
+                    console.log(res);
+                    res.forEach(item => {
+                        strs +=
+                            `<tr class="tlist">
+                        <td class="c"><span class="iconfont icon-succ item"></span></td>
+                        <td class="simg">
+                            <img src="${item.imgpath}" alt="" />
+                        </td>
+                        <td class="titles">${item.Title}</td>
+                        <td class="price">${item.Price}</td>
+                        <td class="number numbers">
+                            <div class="nu">
+                                <span class="iconfont icon-jianhao"></span><input type="text" value="1" class="shopNumber"/><span class="iconfont icon-hao"></span>
+                                <div class="msg"></div>
+                            </div>
+                        </td>
+                        <td class="count ic">${item.Price}</td>
+                        <td class="op"><span class="iconfont icon-X-"></span></td>
+                    </tr>`;
+                    });
+
+                }
+            });
+
+            // let data = {
+            // res[0].ProList.bookId:
+            // res[0].ProList.Title:shopName,
+            // res[0].ProList.number:1,
+            // res[0].ProList.Price:shopName,
+            // res[0].ProList.imgpath:shopPric,
+
+
+            // };
+            // ajax({
+            //     url: "http://localhost:3000/carts",
+            //     type: "post",
+            //     data: data,
+            //     success: function (res) {
+            //         if (res == 1) {
+            //             location.reload();
+            //         } else {
+            //             alert("添加失败，请重试");
+            //         }
+            //     }
+            // })
+
         }
         number();
     }
