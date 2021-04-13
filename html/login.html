@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/public.css">
     <link rel="stylesheet" href="../css/login.css">
+
+
 </head>
 
 <body>
@@ -45,17 +47,16 @@
                         <span>验证码 ：</span>
                     </div>
                     <div class="inputWrap Yanzhengma">
-                        <input type="text" placeholder="请输入图片验证码">
+                        <input type="text" id="SRYZM" placeholder="请输入验证码">
                     </div>
-                    <div class="imgWrap">
-                        <img src="" alt="">
+                    <div class="imgWrap" id="checkCode" onclick="createCode()">
                     </div>
-                    <div class="changeImg">
-                        <a href="">换一换</a>
+                    <div class="changeImg" onclick="createCode()">
+                        <a href="javascript:;">换一换</a>
                     </div>
                 </div>
-                <div class="loginBtn">
-                    <a href="#" target="_blank">登录</a>
+                <div class="loginBtn" id="OK" onclick="GetDom()">
+                    <a href="javascript:;">登录</a>
                 </div>
                 <div class="otherLink">
                     <a href="#" target="_blank" class="fl">忘记密码？</a>
@@ -84,5 +85,6 @@
         </div>
     </footer>
 </body>
+<script src="../js/login.js"></script>
 
 </html>

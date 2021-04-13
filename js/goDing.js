@@ -8,7 +8,6 @@ function startMover() {
     clearInterval(timer1);
     timer1 = setInterval(function () {
         var st = document.documentElement.scrollTop || document.body.scrollTop;
-        console.log(st);
         var ispeed = st / 8;
         ispeed = ispeed > 0 ? Math.ceil(ispeed) : Math.floor(ispeed);
         if (st == 0) {

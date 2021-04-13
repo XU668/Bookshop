@@ -220,11 +220,9 @@
     color: #666666;
     margin-top: 10px;
 }
-.listMain .listLeft .bookList #TJbooks li .infor .oparateButton {
-    overflow: hidden;
+
+.listMain .listLeft .bookList #TJbooks li .infor  .buyButton {
     margin-top: 10px;
-}
-.listMain .listLeft .bookList #TJbooks li .infor .oparateButton .buyButton {
     line-height: 30px;
     text-indent: 30px;
     color: #fff;

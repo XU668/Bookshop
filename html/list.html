@@ -12,6 +12,7 @@
     <script src="../js/jquery.min.js"></script>
     <script src="../js/ajax.js"></script>
 
+
 </head>
 
 <body>
@@ -41,36 +42,6 @@
             <div class="listLeft">
                 <div class="bookList">
                     <ul id="TJbooks">
-                        <!-- <li>
-                            <div class="pic" id="zoomBox">
-                                <div id="midArea">
-                                    <img src="../imgs/Books/1.jpg">
-                                    <div id="zoom"></div>
-                                </div>
-                                <div id="bigArea">
-                                    <img src="../imgs/Books/1.jpg">
-                                </div>
-                            </div>
-
-                            <div class="infor">
-                                <h2 class="name">和我们的女儿谈话</h2>
-                                <div class="otherInfor">
-                                    <a href="">王朔</a>
-                                    <i>&nbsp;&nbsp;/&nbsp;&nbsp;</i>
-                                    <span>2019-04-01</span>
-                                    <a href="">人民文学出版社</a>
-                                </div>
-                                <div class="priceWrap">
-                                    <span class="sellPrice">¥9.5</span>
-                                </div>
-                                <p class="recoLagu">
-                                    一个叫做方言的人自杀死亡了，没有人知道他自杀的原因。已值“风烛残年”的老王，时隔三十多年后终于敞开心扉，向逝去多年的挚友方言的女儿咪咪方说出了她父亲生死的谜底。小说随着老王言不由衷、躲躲闪闪、矢口否认、百般诡辩而渐渐进入到隐秘的深处，由此揭开了一个人痛苦的内心生活和全部人生滋味。两人的谈话变得漫长而艰难...
-                                </p>
-                                <div class="oparateButton">
-                                    <a href="" class="buyButton">加入购物车</a>
-                                </div>
-                            </div>
-                        </li> -->
                     </ul>
                     <ul id="pages">
                         <li>首页</li>
@@ -213,5 +184,53 @@
 
 <script src="../js/list.js"></script>
 <script src="../js/goDing.js"></script>
+<script src="../js/OIUDdata.js"></script>
+<!-- <script>
+    var data = [
+        {
+            "id": 2,
+            "bookId": 4,
+            "Title": "活动变人形-中国文库",
+            "number": 1,
+            "Price": 40.99,
+            "imgpath": "../imgs/Books/24.jpg"
+        },
+        {
+            "id": 3,
+            "bookId": 6,
+            "Title": "围城",
+            "number": 1,
+            "Price": 10.99,
+            "imgpath": "../imgs/Books/26.jpg"
+        },
+        {
+            "id": 4,
+            "bookId": 6,
+            "Title": "围城",
+            "number": 1,
+            "Price": 10.99,
+            "imgpath": "../imgs/Books/26.jpg"
+        }
+    ];
+    $.ajax({
+        url: "http://localhost:3000/carts/1",
+        type: "put",
+        data: {
+            "ProList": JSON.stringify(data)
+        },
+        success: data => {
+            console.log(data);
+        }
+
+    })
+    $.ajax({
+        url: "http://localhost:3000/carts/1",
+        type: "get",
+        success: data => {
+            let data = JSON.parse(data.ProList);
+        }
+
+    })
+</script> -->
 
 </html>

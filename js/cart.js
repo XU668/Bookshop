@@ -19,30 +19,30 @@ window.onload = function () {
         type: "get",
         success: function (res) {
             res = JSON.parse(res);
-            let data = res[0].ProList;
             let strs = "";
-            data.forEach(item => {
-                strs +=
-                    `<tr class="tlist">
-                <td class="c"><span class="iconfont icon-succ item"></span></td>
-                <td class="simg">
-                    <img src="${item.imgpath}" alt="" />
-                </td>
-                <td class="titles">${item.Title}</td>
-                <td class="price">${item.Price}</td>
+            for (let i = 0; i < res.length; i++) {
+                if (res[i].userId == 2) {
+                    strs +=
+                        `<tr class="tlist">
+                    <td class="c"><span class="iconfont icon-succ item"></span></td>
+                    <td class="simg">
+                        <img src="${res[i].imgpath}" alt="" />
+                    </td>
+                    <td class="titles">${res[i].Title}</td>
+                    <td class="price">${res[i].Price}</td>
                 <td class="number numbers">
                     <div class="nu">
                         <span class="iconfont icon-jianhao"></span><input type="text" value="1" class="shopNumber"/><span class="iconfont icon-hao"></span>
                         <div class="msg"></div>
                     </div>
                 </td>
-                <td class="count ic">${item.Price}</td>
-                <td class="op"><span class="iconfont icon-X-"></span></td>
-            </tr>`;
-            });
+                <td class="count ic">${res[i].Price}</td>
+                <td class="op"><span class="iconfont icon-X-" data-id ="${res[i].id}"></span></td>
+                </tr>`;
+
+                }
+            }
             tbody.innerHTML += strs;
-
-
 
         }
     });
@@ -128,6 +128,105 @@ window.onload = function () {
         if (target.className == "iconfont icon-X-") {
             var flag = confirm("是否确定删除商品？");
             if (flag) {
+
+
+                //删除json数据
+                /*  ajax({
+                     url: "http://localhost:3000/carts",
+                     type: "get",
+                     success: function (res) {
+                         res = JSON.parse(res);
+                         let count = 0;
+                         let CartID = target;
+                         for (let i = 0; i < res.length; i++) {
+                             count++;
+                             if (res[i].id == count) {
+ 
+                             }
+ 
+ 
+                         }
+ 
+                     }
+                 }); */
+
+                $(".icon-X-").each(function () {
+                    console.log($(".icon-X-"));
+                    $(this).click(function () {
+                        console.log(this);
+                        let CartID = $(this).attr("data-id");  //商品ID
+                        console.log(bookId);
+                        ajax({
+                            url: "http://localhost:3000/carts",
+                            type: "get",
+                            success: function (res) {
+                                res = JSON.parse(res);
+                                let count = 0;
+                                let CartID = target;
+                                for (let i = 0; i < res.length; i++) {
+                                    count++;
+                                    if (res[i].id == CartID) {
+                                        res.splice(count, 1);
+                                        var data = {
+                                            res: res
+                                        };
+                                        alert("删除成功");
+                                    }
+
+
+                                }
+
+                            }
+                        });
+                        $.ajax({
+                            url: "http://localhost:3000/carts",
+                            async: true,
+                            type: "post",
+                            data: {
+                                "type": "delete",
+                                "id": CartID
+                            },
+                            success: function (data) {
+                                alert(data);
+                                // 删除成功后刷新页面
+                                // window.location.reload();
+                            },
+                            error: function () {
+                                alert("请求失败");
+                            },
+                            dataType: "text"
+                        });
+                        $.ajax({
+                            type: 'POST',
+                            dataType: "json",
+                            url: "http://localhost:3000/carts",
+                            data: {
+                                id: CartID
+                            },
+                            success: function (res) {
+
+                                if (res.code == 0) {
+                                    alert("删除成功");
+
+                                    datalist.splice(key, 1);//从索引key开始，删 1 个元素
+                                    var data = {
+                                        datalist: datalist
+                                    };
+
+                                } else {
+                                    alert("删除失败")
+                                }
+                            },
+                            error: function () {
+                                alert("删除失败");
+                            }
+                        });
+
+
+
+                    })
+                });
+
                 target.parentNode.parentNode.remove();
                 // 判断移除之后的总价，和已选数量
                 money();
@@ -141,6 +240,8 @@ window.onload = function () {
                     }
                     all.className = "iconfont icon-succ all btn";
                 }
+
+
             }
         }
         // 全选判断
@@ -338,27 +439,6 @@ window.onload = function () {
                 }
             });
 
-            // let data = {
-            // res[0].ProList.bookId:
-            // res[0].ProList.Title:shopName,
-            // res[0].ProList.number:1,
-            // res[0].ProList.Price:shopName,
-            // res[0].ProList.imgpath:shopPric,
-
-
-            // };
-            // ajax({
-            //     url: "http://localhost:3000/carts",
-            //     type: "post",
-            //     data: data,
-            //     success: function (res) {
-            //         if (res == 1) {
-            //             location.reload();
-            //         } else {
-            //             alert("添加失败，请重试");
-            //         }
-            //     }
-            // })
 
         }
         number();

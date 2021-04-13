@@ -73,7 +73,16 @@
     border: 1pz solid #ccc;
     float: left;
     margin-left: 12px;
-    background: skyblue;
+    background-color: silver;
+    font-family:Arial; /*设置字体*/
+    font-style:initial;
+    color:brown;
+    font-size:30px;
+    letter-spacing:8px;
+    font-weight:bolder;  
+    line-height: 50px;     
+    padding-left: 8px;     
+
 }
 .inputName .changeImg{
     float: left;
