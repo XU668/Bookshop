@@ -38,10 +38,10 @@ function show(res) {
         <div class="infor">
             <h2 class="name">${res[i].Title}</h2>
             <div class="otherInfor">
-                <a href="">${res[i].Author}</a>
+                <a href="javascript:;">${res[i].Author}</a>
                 <i>&nbsp;&nbsp;/&nbsp;&nbsp;</i>
                 <span>${res[i].PubDate}</span>
-                <a href="">人民文学出版社</a>
+                <a href="javascript:;">人民文学出版社</a>
             </div>
             <div class="priceWrap">
                 <span class="sellPrice">${res[i].Price}</span>
@@ -49,7 +49,7 @@ function show(res) {
             <p class="recoLagu">
                 一个叫做方言的人自杀死亡了，没有人知道他自杀的原因。已值“风烛残年”的老王，时隔三十多年后终于敞开心扉，向逝去多年的挚友方言的女儿咪咪方说出了她父亲生死的谜底。小说随着老王言不由衷、躲躲闪闪、矢口否认、百般诡辩而渐渐进入到隐秘的深处，由此揭开了一个人痛苦的内心生活和全部人生滋味。两人的谈话变得漫长而艰难...
             </p>
-             <a href="javascript:;" class="buyButton" data-id="${res[i].id}">加入购物车</a>
+             <a href="javascript:;"  class="buyButton" data-id="${res[i].id}">加入购物车</a>
         </div>
         </li>`;
         }
@@ -57,25 +57,13 @@ function show(res) {
         //取数据的AJAX放在这里
         (function ($) {
             $(".buyButton").each(function () {
-                console.log($(".buyButton"));
                 $(this).click(function () {
                     // console.log(this);
                     let bookId = $(this).attr("data-id");  //商品ID
+                    //let detail = $(".danBen");//详情页节点
                     // console.log(bookId);
                     for (let i = index * numPerPage; i < Math.min((index + 1) * numPerPage, len); i++) {
                         if (res[i].id == bookId) {
-                            // let addBook = res[i];
-                            // let data = {
-                            //     "bookId": Number(res[i].id),
-                            //     "Title": res[i].Title,
-                            //     "number": Number(1),
-                            //     "Price": Number(res[i].Price),
-                            //     "imgpath": res[i].imgpath,
-                            //     "userId": Number(2)
-                            // };
-
-                            // console.log(data);
-
                             $.ajax({
                                 url: "http://localhost:3000/carts",
                                 type: "post",
@@ -89,45 +77,20 @@ function show(res) {
                                 },
                                 success: function () {
                                     alert("添加购物车成功");
+                                    window.location.href = "../html/detail.html";
+
                                 },
                                 error: function () {
                                     alert("请求失败");
                                 },
-                                /* success: function (cart) {
-                                    console.log(cart);
-                                    let cartdata = cart.ProList;
 
-                                    console.log(cartdata);
-                                    cartdata.push(data);
-                                    console.log(cartdata);
-                                    $.ajax({
-                                        url: "http://localhost:3000/carts/1",
-                                        type: "put",
-                                        data: {
-                                            "ProList": JSON.stringify(cartdata)
-                                        },
-                                        success: function (res) {
-                                            if (res == 1) {
-                                                alert("添加购物车成功");
-                                            } else {
-                                                alert("添加失败！");
-                                            }
-                                        }
-
-                                    });
-
-
-                                } */
                             });
-
-
                         }
                     }
 
+
                 })
             });
-
-
         })(jQuery);
 
 

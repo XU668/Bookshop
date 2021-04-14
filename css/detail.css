@@ -1,0 +1,76 @@
+.content{
+    width: 1200px;
+    margin: 0 auto;
+}
+.danBen{
+    width: 100%;
+    height: 400px;
+    border-bottom: 2px solid #eef1f9;
+    display: flex;
+    background: #fff;
+}
+.danBen .img{
+    width: 300px;
+    height: 300px;
+    margin-top: 15px;
+}
+.danBen .img a{
+    display: block;
+}
+.danBen img{
+    width: 300px;
+}
+.danBen .shuoming{
+    width: 720px;
+    height: 300px;
+    margin-left: 20px;
+    margin-top: 15px;
+}
+.shuoming h2{
+    margin-top: 10px;
+    line-height: 30px;
+}
+.shuoming h2 a{
+    font-size: 16px;
+    color: #000;
+    font-family: "Microsoft YaHei";
+    line-height: 50px;
+}
+.shuoming .price{
+    height: 30px;
+    line-height: 50px;
+}
+.shuoming .price span{
+    float: left;
+    font-size: 18px;
+    font-family: "Microsoft YaHei";
+}
+.shuoming .price .sellPrice{
+    color: #e60000;
+}
+.shuoming .price .oldPrice{
+    color: #999999;
+    margin-left: 11px;
+    text-decoration-line: line-through;
+}
+.shuoming .mainFont{
+    height: 96px;
+    padding-right:30px;
+}
+.mainFont p{
+    color: #666666;
+    line-height: 24px;
+    text-indent: 20px;
+    margin-top: 40px;
+}
+.shuoming .buyButton {
+    margin-top: 50px;
+    line-height: 30px;
+    text-indent: 30px;
+    color: #fff;
+    width: 100px;
+    height: 30px;
+    background: url(../imgs/smallTuBiao.png) no-repeat -164px -452px;
+    margin-right: 10px;
+    display: block;
+}

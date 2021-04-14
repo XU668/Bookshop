@@ -21,7 +21,7 @@
             <img src="../imgs/logo.png" alt="">
             <div class="search">
                 <div class="searchFrom">
-                    <input type="text" class="shurukuang" placeholder="搜索你想要的">
+                    <input type="text" class="shurukuang" placeholder="搜索你想找的">
                     <div class="searchAll">
                         <a href="#" class="searchnav">搜索全部<span></span></a>
                     </div>
@@ -142,23 +142,23 @@
         <div class="w">
             <ul id="right-nav-list1">
                 <li class="first">
-                    <a href="">
+                    <a href="../html/myOrder.html" target="_blank">
                         <div class="iconWrap">
                             <img src="../imgs/person.png" alt="">
                         </div>
                     </a>
                     <div class="navMessage">
-                        <a href="#" target="_blank">个人中心</a>
+                        <a href="../html/myOrder.html" target="_blank">个人中心</a>
                     </div>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="../html/cart.html" target="_blank">
                         <div class="iconWrap">
                             <img src="../imgs/cart.png" alt="">
                         </div>
                     </a>
                     <div class="navMessage">
-                        <a href="#" target="_blank">购物车</a>
+                        <a href="../html/cart.html" target="_blank">购物车</a>
                     </div>
                 </li>
                 <li style="height:35px;" class="last">
@@ -184,53 +184,6 @@
 
 <script src="../js/list.js"></script>
 <script src="../js/goDing.js"></script>
-<script src="../js/OIUDdata.js"></script>
-<!-- <script>
-    var data = [
-        {
-            "id": 2,
-            "bookId": 4,
-            "Title": "活动变人形-中国文库",
-            "number": 1,
-            "Price": 40.99,
-            "imgpath": "../imgs/Books/24.jpg"
-        },
-        {
-            "id": 3,
-            "bookId": 6,
-            "Title": "围城",
-            "number": 1,
-            "Price": 10.99,
-            "imgpath": "../imgs/Books/26.jpg"
-        },
-        {
-            "id": 4,
-            "bookId": 6,
-            "Title": "围城",
-            "number": 1,
-            "Price": 10.99,
-            "imgpath": "../imgs/Books/26.jpg"
-        }
-    ];
-    $.ajax({
-        url: "http://localhost:3000/carts/1",
-        type: "put",
-        data: {
-            "ProList": JSON.stringify(data)
-        },
-        success: data => {
-            console.log(data);
-        }
 
-    })
-    $.ajax({
-        url: "http://localhost:3000/carts/1",
-        type: "get",
-        success: data => {
-            let data = JSON.parse(data.ProList);
-        }
-
-    })
-</script> -->
 
 </html>

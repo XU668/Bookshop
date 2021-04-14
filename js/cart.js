@@ -46,6 +46,7 @@ window.onload = function () {
 
         }
     });
+    number();
 
 
     // 全选按钮
@@ -131,102 +132,27 @@ window.onload = function () {
 
 
                 //删除json数据
-                /*  ajax({
-                     url: "http://localhost:3000/carts",
-                     type: "get",
-                     success: function (res) {
-                         res = JSON.parse(res);
-                         let count = 0;
-                         let CartID = target;
-                         for (let i = 0; i < res.length; i++) {
-                             count++;
-                             if (res[i].id == count) {
- 
-                             }
- 
- 
-                         }
- 
-                     }
-                 }); */
 
-                $(".icon-X-").each(function () {
-                    console.log($(".icon-X-"));
-                    $(this).click(function () {
-                        console.log(this);
-                        let CartID = $(this).attr("data-id");  //商品ID
-                        console.log(bookId);
-                        ajax({
-                            url: "http://localhost:3000/carts",
-                            type: "get",
-                            success: function (res) {
-                                res = JSON.parse(res);
-                                let count = 0;
-                                let CartID = target;
-                                for (let i = 0; i < res.length; i++) {
-                                    count++;
-                                    if (res[i].id == CartID) {
-                                        res.splice(count, 1);
-                                        var data = {
-                                            res: res
-                                        };
-                                        alert("删除成功");
-                                    }
+                ajax({
+                    url: "http://localhost:3000/carts",
+                    type: "get",
+                    success: function (res) {
+                        res = JSON.parse(res);
+                        let CartID = target.dataset.id;
+                        console.log(CartID);
 
+                        axios.delete(`http://localhost:3000/carts/${CartID}`, {
+                        })
+                            .then(function () {
+                                alert("删除成功！");
+                                location.reload();
+                            })
+                            .catch(function (error) {
+                                alert("删除失败！")
+                            });
 
-                                }
-
-                            }
-                        });
-                        $.ajax({
-                            url: "http://localhost:3000/carts",
-                            async: true,
-                            type: "post",
-                            data: {
-                                "type": "delete",
-                                "id": CartID
-                            },
-                            success: function (data) {
-                                alert(data);
-                                // 删除成功后刷新页面
-                                // window.location.reload();
-                            },
-                            error: function () {
-                                alert("请求失败");
-                            },
-                            dataType: "text"
-                        });
-                        $.ajax({
-                            type: 'POST',
-                            dataType: "json",
-                            url: "http://localhost:3000/carts",
-                            data: {
-                                id: CartID
-                            },
-                            success: function (res) {
-
-                                if (res.code == 0) {
-                                    alert("删除成功");
-
-                                    datalist.splice(key, 1);//从索引key开始，删 1 个元素
-                                    var data = {
-                                        datalist: datalist
-                                    };
-
-                                } else {
-                                    alert("删除失败")
-                                }
-                            },
-                            error: function () {
-                                alert("删除失败");
-                            }
-                        });
-
-
-
-                    })
+                    }
                 });
-
                 target.parentNode.parentNode.remove();
                 // 判断移除之后的总价，和已选数量
                 money();
@@ -359,16 +285,27 @@ window.onload = function () {
     var c = 0;
 
     function number() {
-        var itemBtns = document.querySelectorAll(".c span");
-        for (var i = 0; i < itemBtns.length; i++) {
-            c = parseInt(
-                itemBtns[i].parentNode.parentNode.querySelector(".shopNumber")
-                    .value
-            );
-            cnumber += c;
-        }
-        cNumber.innerHTML = cnumber;
-        cnumber = 0;
+        ajax({
+            url: "http://localhost:3000/carts",
+            type: "get",
+            success: function (res) {
+                res = JSON.parse(res);
+                let len = res.length;
+                cNumber.innerHTML = len;
+
+
+            }
+        });
+
+        // var itemBtns = document.querySelectorAll(".c span");
+        // for (var i = 0; i < itemBtns.length; i++) {
+        //     c = parseInt(
+        //         itemBtns[i].parentNode.parentNode.querySelector(".shopNumber").value
+        //     );
+        //     cnumber += c;
+        // }
+        // cNumber.innerHTML = cnumber;
+        // cnumber = 0;
     }
 
     var shopList = document.querySelector(".shopList")
@@ -380,16 +317,53 @@ window.onload = function () {
             var str = "";
             for (var i = 0; i < 10; i++) {
                 str += ` <li class="shopitem">
-            <a href="javascript:">
+            <a href="javascript:;">
                 <img src="${res[i].imgpath}" alt="">
                 <p class="shop-name">${res[i].Title}</p>
                 <p class="shop-price">${res[i].Price}</p>
                 <p class="shop-tips">${res[i].Author}</p>
             </a>
-            <div class="action">加入购物车</div>
+            <div class="action" data-id="${res[i].id}">加入购物车</div>
             </li>`
             }
             shopList.innerHTML = str;
+            //加入购物车数据
+            (function ($) {
+                $(".action").each(function () {
+                    // console.log($(".action"));
+                    $(this).click(function () {
+                        console.log(this);
+                        let bookId = $(this).attr("data-id");  //商品ID
+                        console.log(bookId);
+                        for (let i = 0; i < res.length; i++) {
+                            if (res[i].id == bookId) {
+                                $.ajax({
+                                    url: "http://localhost:3000/carts",
+                                    type: "post",
+                                    data: {
+                                        "bookId": Number(res[i].id),
+                                        "Title": res[i].Title,
+                                        "number": Number(1),
+                                        "Price": Number(res[i].Price),
+                                        "imgpath": res[i].imgpath,
+                                        "userId": Number(2)
+                                    },
+                                    success: function () {
+                                        alert("添加购物车成功");
+                                        return;
+                                    },
+                                    error: function () {
+                                        alert("请求失败");
+                                        return;
+                                    },
+
+                                });
+                            }
+                        }
+                    })
+                });
+            })(jQuery);
+
         }
     });
     shopList.onclick = function (event) {

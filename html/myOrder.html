@@ -5,74 +5,77 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>书屋--购物车</title>
-    <link rel="stylesheet" href="https://at.alicdn.com/t/font_2329460_legvgzs3jvm.css">
+    <title>书屋--我的订单</title>
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/public.css">
-
-    <link rel="stylesheet" href="../css/cart.css">
-    <script src="../js/ajax.js"></script>
-    <script src="../js/cart.js"></script>
+    <link href="../css/myOrder.css" rel="stylesheet" type="text/css" />
     <script src="../js/jquery.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+    <script src="../js/ajax.js"></script>
 </head>
 
 <body>
-    <header class="headerWrap">
-        <div class="header">
+    <div class="topLogoWrap">
+        <div class="topLogo">
             <img src="../imgs/logo.png" alt="">
+            <div class="search">
+                <div class="searchFrom">
+                    <input type="text" class="shurukuang" placeholder="搜索我的订单">
+                    <div class="searchAll">
+                        <a href="#" class="searchnav">搜索全部<span></span></a>
+                    </div>
+                    <a href="#" class="searchBtn">搜索</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="topBarWrap">
+        <div class="topBar">
+
+            <div class="loginwrap fr">
+                <a href="../html/cart.html" class="login fr" target="_blank">我的购物车</a>
+                <span>|</span>
+                <a href="../html/update.html" class="zhuce fr" target="_blank">修改个人资料</a>
+            </div>
+
 
         </div>
-    </header>
+    </div>
+
     <div class="content">
-        <div class="center">
-            <table>
-                <tbody class="tb">
-                    <tr class="thead">
-                        <td class="fist"><i class="iconfont icon-succ all"></i> 全选</td>
-                        <td class="simg"></td>
-                        <td class="shopName">商品名称</td>
-                        <td class="price">单价</td>
-                        <td class="number">数量</td>
-                        <td class="count">小计</td>
-                        <td class="op">操作</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="crta">
-            <div class="c-left">
-                <a href="#" class="back-shopping">继续购物</a>
-                <span class="cart-total">共<i class="c-number">3</i> 件商品，已选择
-                    <i class="g-number">0</i>件
-                </span>
-            </div>
-            <div class="total-price">
-                <span>合计：<em>0</em>元</span>
-                <div class="noTip">请勾选需要结算的商品</div>
-                <a href="javascript:" class="close btn-disabled">去结算</a>
-            </div>
-        </div>
-        <div class="content">
-            <h2 class="shoptitle"><span class="title">买购物车中商品的人还买了</span></h2>
-            <div class="shop-all">
-                <ul class="shopList clearfix">
-                </ul>
-            </div>
-        </div>
+        <section class="aui-flexView">
+            <header class="aui-navBar aui-navBar-fixed b-line">
+
+                <div class="aui-center">
+                    <span class="aui-center-title">我的订单</span>
+                </div>
+
+            </header>
+            <section class="aui-scrollView">
+                <div class="aui-tab" data-ydui-tab>
+
+                    <div class="divHeight"></div>
+                    <div class="tab-panel">
+                        <div class="tab-panel-item">
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
 
     </div>
     <div id="right-nav">
         <div class="w">
             <ul id="right-nav-list1">
                 <li class="first">
-                    <a href="../html/myOrder.html">
+                    <a href="">
                         <div class="iconWrap">
                             <img src="../imgs/person.png" alt="">
                         </div>
                     </a>
                     <div class="navMessage">
-                        <a href="../html/myOrder.html" target="_blank">个人中心</a>
+                        <a href="#" target="_blank">个人中心</a>
                     </div>
                 </li>
                 <li>
@@ -112,5 +115,7 @@
         </div>
     </footer>
 </body>
+<script src="../js/goDing.js"></script>
+<script src="../js/myOrder.js"></script>
 
 </html>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>书屋--注册</title>
+    <title>修改个人资料</title>
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/public.css">
     <link rel="stylesheet" href="../css/register.css">
@@ -24,40 +24,31 @@
     <div class="content clean">
         <div class="loginFrom">
             <div class="loginName">
-                <b>新用户注册</b>
+                <b>修改密码</b>
             </div>
             <form action="" class="From">
                 <div class="inputName">
                     <div class="label">
-                        <span>手机号码 ：</span>
+                        <span>请输入当前密码 ：</span>
                     </div>
                     <div class="inputWrap">
-                        <input type="text" id="phone" placeholder="请输入您的手机号码">
-                        <span class="">
+                        <input type="password" id="oldMima" placeholder="请输入当前密码">
                     </div>
                 </div>
                 <div class="inputName">
                     <div class="label">
-                        <span>设置密码 ：</span>
+                        <span>请输入新密码 ：</span>
                     </div>
                     <div class="inputWrap">
-                        <input type="password" id="mima" placeholder="请输入密码">
+                        <input type="password" id="newMima" placeholder="请输入新密码">
                     </div>
                 </div>
                 <div class="inputName">
                     <div class="label">
-                        <span>确认密码 ：</span>
+                        <span>请确认新密码 ：</span>
                     </div>
                     <div class="inputWrap">
-                        <input type="password" id="YZmima" placeholder="请再次输入密码">
-                    </div>
-                </div>
-                <div class="inputName">
-                    <div class="label">
-                        <span>昵&nbsp;&nbsp;&nbsp;称 ：</span>
-                    </div>
-                    <div class="inputWrap phoneYZM">
-                        <input type="text" id="name" placeholder="请输入昵称" class="fl">
+                        <input type="password" id="YZnewMima" placeholder="请确认新密码">
                     </div>
                 </div>
                 <div class="inputName">
@@ -75,7 +66,7 @@
                 </div>
 
                 <div class="loginBtn">
-                    <a id="OK" href=" javascript:;">立即注册</a>
+                    <a id="OK" href=" javascript:;">提交</a>
                 </div>
 
 
@@ -92,8 +83,9 @@
             </ul>
         </div>
     </footer>
+
 </body>
-<script src="../js/register.js"></script>
 <script src="../js/yanZhengMa.js"></script>
+<script src="../js/update.js"></script>
 
 </html>
