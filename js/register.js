@@ -1,4 +1,8 @@
 (function ($) {
+    var logo = $(".header");
+    logo.click(function () {
+        window.location.href = "../html/index.html";
+    });
     var regtel = /^1[3|4|5|7|8]\d{9}$/; // 手机号码的正则表达式
     $("#OK").click(function () {
         if (GetDom()) {

@@ -1,4 +1,14 @@
 window.onload = function () {
+
+    if (!localStorage.getItem("users")) {
+        alert("请先登录！");
+        window.location.href = "../html/login.html";
+        // return;
+    }
+    var logo = document.querySelector(".topLogo");
+    logo.onclick = function () {
+        window.location.href = "../html/index.html";
+    }
     ajax({
         url: "http://localhost:3000/orders",
         type: "get",
@@ -56,7 +66,7 @@ window.onload = function () {
                         })
                             .then(function () {
                                 alert("删除成功！");
-                                location.reload();
+                                // location.reload();
                             })
                             .catch(function (error) {
                                 alert("删除失败！")

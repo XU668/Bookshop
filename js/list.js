@@ -3,6 +3,10 @@ let oPages = document.getElementById("pages");
 let aPageList = oPages.children;
 let pageNum = document.querySelector(".pageNum");
 let curIndex = 0; //当前页
+var logo = document.querySelector(".topLogo");
+logo.onclick = function () {
+    window.location.href = "../html/index.html";
+}
 ajax({
     url: "http://localhost:3000/books",
     type: "get",
@@ -26,12 +30,12 @@ function show(res) {
         let str1 = "";
         for (let i = index * numPerPage; i < Math.min((index + 1) * numPerPage, len); i++) {
             str1 += `<li>
-            <div class="pic" id="zoomBox">
-            <div id="midArea">
+            <div class="pic zoomBox" id="zoomBox">
+            <div id="midArea" class="midArea">
                 <img src="${res[i].imgpath}">
-                <div id="zoom"></div>
+                <div id="zoom" class="zoom"></div>
             </div>
-            <div id="bigArea">
+            <div id="bigArea" class="bigArea">
                 <img src="${res[i].imgpath}">
             </div>
         </div>
@@ -54,49 +58,58 @@ function show(res) {
         </li>`;
         }
         TJbooks.innerHTML = str1;
-        //取数据的AJAX放在这里
-        (function ($) {
-            $(".buyButton").each(function () {
-                $(this).click(function () {
-                    // console.log(this);
-                    let bookId = $(this).attr("data-id");  //商品ID
-                    //let detail = $(".danBen");//详情页节点
-                    // console.log(bookId);
-                    for (let i = index * numPerPage; i < Math.min((index + 1) * numPerPage, len); i++) {
-                        if (res[i].id == bookId) {
-                            $.ajax({
-                                url: "http://localhost:3000/carts",
-                                type: "post",
-                                data: {
-                                    "bookId": Number(res[i].id),
-                                    "Title": res[i].Title,
-                                    "number": Number(1),
-                                    "Price": Number(res[i].Price),
-                                    "imgpath": res[i].imgpath,
-                                    "userId": Number(2)
-                                },
-                                success: function () {
-                                    alert("添加购物车成功");
-                                    window.location.href = "../html/detail.html";
-
-                                },
-                                error: function () {
-                                    alert("请求失败");
-                                },
-
-                            });
-                        }
-                    }
-
-
-                })
-            });
-        })(jQuery);
-
-
-
 
     }
+
+    //取数据的AJAX放在这里
+    (function ($) {
+        $(".buyButton").each(function () {
+            $(this).click(function () {
+                // console.log(this);
+                if (!localStorage.getItem("users")) {
+                    alert("请先登录！");
+                    window.location.href = "../html/login.html";
+                    // return;
+                }
+
+                let bookId = $(this).attr("data-id");  //商品ID
+                //let detail = $(".danBen");//详情页节点
+                // console.log(bookId);
+                for (let i = 0; i < len; i++) {
+                    if (res[i].id == bookId) {
+                        $.ajax({
+                            url: "http://localhost:3000/carts",
+                            type: "post",
+                            data: {
+                                "bookId": Number(res[i].id),
+                                "Title": res[i].Title,
+                                "number": Number(1),
+                                "Price": Number(res[i].Price),
+                                "imgpath": res[i].imgpath,
+                                "userId": Number(2)
+                            },
+                            success: function () {
+                                alert("添加购物车成功");
+                                window.location.href = "../html/detail.html";
+
+                            },
+                            error: function () {
+                                alert("请求失败");
+                            },
+
+                        });
+                    }
+                }
+
+
+            })
+        });
+    })(jQuery);
+
+
+
+
+
     //具体页码
     let aNums = pageNum.children;
     aNums[0].style.background = "red";

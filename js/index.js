@@ -1,3 +1,20 @@
+
+if (!localStorage.getItem("users")) {
+    alert("请先登录！");
+    window.location.href = "../html/login.html";
+    // return;
+} else {
+
+    // let yiDL = document.getElementsByClassName(".yiDL")[0];
+    // let weiDL = document.getElementsByClassName(".weiDL")[0];
+    // let mingzi = $(".yiDL .mingzi")
+    // yiDL.css("display", "block");
+    // weiDL.css("display", "none");
+    // mingzi.text();
+    // console.log($(".yiDL"));
+    // console.log($(".weiDL"));
+
+}
 $(function () {
     $(".RXbang").find(".bookCur").first().css("display", "block");
     $(".RXbang").find("li").mouseover(function () {

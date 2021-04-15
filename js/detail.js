@@ -1,15 +1,18 @@
-
+var logo = document.querySelector(".header");
+logo.onclick = function () {
+    window.location.href = "../html/index.html";
+}
 $.ajax({
     url: "http://localhost:3000/books",
     type: "get",
-    data: {
-        bookId
-    },
+    // data: {
+    //     bookId
+    // },
     success: function (res) {
         res = JSON.parse(res);
         let len = res.length;
         for (let i = 0; i < len; i++) {
-            if (res[i].id == bookId) {
+            if (res[i].id == 1) {
                 let str2 = "";
                 str1 += `<div class="img">
                                     <a href="javascript:;"><img src="${res[i].imgpath}" alt=""></a>

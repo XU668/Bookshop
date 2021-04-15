@@ -46,7 +46,7 @@ html,body{
     line-height: 38px;
 }
 .topBar .loginwrap{
-    width: 194px;
+    width: 210px;
     height: 38px;
     display: flex;
 }
@@ -54,6 +54,7 @@ html,body{
     color: #666666;
     font-weight: 400;
     line-height: 38px;
+    margin-left: 5px;
 }
 .topBar .loginwrap a{
     color: #e60000;

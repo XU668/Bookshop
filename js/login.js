@@ -1,4 +1,8 @@
 (function ($) {
+    var logo = $(".header");
+    logo.click(function () {
+        window.location.href = "../html/index.html";
+    });
     $("#OK").click(function () {
         if (GetDom()) {
             let phone = $("#phone").val();
@@ -17,6 +21,7 @@
 
                             if (phone == res[i].phone) {
                                 if (res[i].password == pWord) {
+                                    localStorage.setItem("users", JSON.stringify(res[i]));
                                     window.location.href = "../html/index.html";
                                 } else {
                                     alert("密码错误！");
@@ -25,10 +30,14 @@
 
                             }
                         }
+
+
+
                         return;
                     }
                 });
             }
+
 
         } else {
             alert("登录失败！");

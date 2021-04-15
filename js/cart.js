@@ -1,4 +1,11 @@
 window.onload = function () {
+
+    //判断是否登录
+    if (!localStorage.getItem("users")) {
+        alert("请先登录！");
+        window.location.href = "../html/login.html";
+        // return;
+    }
     // 获取tbody节点
     var tbody = document.querySelector(".tb");
     // 总价
@@ -14,6 +21,11 @@ window.onload = function () {
     var noTip = document.querySelector(".noTip");
     // 自动生成商品
     //数据展示
+    //logo点击
+    var logo = document.querySelector(".header");
+    logo.onclick = function () {
+        window.location.href = "../html/index.html";
+    }
     ajax({
         url: "http://localhost:3000/carts",
         type: "get",
@@ -44,18 +56,36 @@ window.onload = function () {
             }
             tbody.innerHTML += strs;
 
+
+
+
         }
+
+
+
+
     });
     number();
-
-
     // 全选按钮
     var all = document.querySelector(".all");
+    // var itemBtns = tbody.querySelectorAll(".item");
     //给tobdy添加点击事件，委托
     tbody.onclick = function (event) {
         var event = event || window.event;
         var target = event.target || event.srcElement;
+        var itemBtns = tbody.querySelectorAll(".item");
+
+        for (let i = 0; i < itemBtns.length; i++) {
+            if (itemBtns[i].className == "iconfont icon-succ item") {
+                all.className = "iconfont icon-succ all";
+                break;
+            }
+            all.className = "iconfont icon-succ all btn";
+            console.log(all.className);
+
+        }
         // 小计价格
+
         if (
             target.className == "iconfont icon-jianhao" ||
             target.className == "iconfont icon-hao"
@@ -94,7 +124,7 @@ window.onload = function () {
         }
         //输入件数
         if (target.className == "shopNumber") {
-            target.onblur = function () {
+            target.onclick = function () {
                 var numa = target.parentNode;
                 // 还可以购买
                 var msg = numa.querySelector(".msg");
@@ -127,48 +157,50 @@ window.onload = function () {
         }
         // 删除商品
         if (target.className == "iconfont icon-X-") {
-            var flag = confirm("是否确定删除商品？");
-            if (flag) {
+            // var flag = confirm("是否确定删除商品？");
+
+            // if (flag) {
 
 
-                //删除json数据
+            //删除json数据
 
-                ajax({
-                    url: "http://localhost:3000/carts",
-                    type: "get",
-                    success: function (res) {
-                        res = JSON.parse(res);
-                        let CartID = target.dataset.id;
-                        console.log(CartID);
+            ajax({
+                url: "http://localhost:3000/carts",
+                type: "get",
+                success: function (res) {
+                    res = JSON.parse(res);
+                    let CartID = target.dataset.id;
+                    console.log(CartID);
 
-                        axios.delete(`http://localhost:3000/carts/${CartID}`, {
+                    axios.delete(`http://localhost:3000/carts/${CartID}`, {
+                    })
+                        .then(function () {
+                            // alert("删除成功！");
+                            // location.reload();
+                            // return 1;
                         })
-                            .then(function () {
-                                alert("删除成功！");
-                                location.reload();
-                            })
-                            .catch(function (error) {
-                                alert("删除失败！")
-                            });
+                        .catch(function (error) {
+                            alert("删除失败！")
+                        });
 
-                    }
-                });
-                target.parentNode.parentNode.remove();
-                // 判断移除之后的总价，和已选数量
-                money();
-                number();
-                var itemBtns = tbody.querySelectorAll(".item");
-                // console.log(itemBtns);
-                for (var i = 0; i < itemBtns.length; i++) {
-                    if (itemBtns[i].className == "iconfont icon-succ item") {
-                        all.className = "iconfont icon-succ all";
-                        break;
-                    }
-                    all.className = "iconfont icon-succ all btn";
                 }
-
-
+            });
+            target.parentNode.parentNode.remove();
+            // 判断移除之后的总价，和已选数量
+            money();
+            number();
+            var itemBtns = tbody.querySelectorAll(".item");
+            // console.log(itemBtns);
+            for (var i = 0; i < itemBtns.length; i++) {
+                if (itemBtns[i].className == "iconfont icon-succ item") {
+                    all.className = "iconfont icon-succ all";
+                    break;
+                }
+                all.className = "iconfont icon-succ all btn";
             }
+
+
+            // }
         }
         // 全选判断
         if (
@@ -207,19 +239,34 @@ window.onload = function () {
             target.className == "iconfont icon-succ item" ||
             target.className == "iconfont icon-succ item btn"
         ) {
-            var itemBtns = tbody.querySelectorAll(".item");
+            // var itemBtns = tbody.getElementsByClassName(".item");
             // 单选
             if (target.className == "iconfont icon-succ item") {
                 target.className += " btn";
                 close.className += " btn-close";
                 // 单选判断全选
-                for (var i = 0; i < itemBtns.length; i++) {
+                var itemBtns = tbody.getElementsByClassName(".item");
+                for (let i = 0; i < itemBtns.length; i++) {
                     if (itemBtns[i].className == "iconfont icon-succ item") {
                         all.className = "iconfont icon-succ all";
                         break;
                     }
                     all.className = "iconfont icon-succ all btn";
                 }
+                let count = 0;
+                for (let i = 0; i < itemBtns.length; i++) {
+                    if (itemBtns[i].className == "iconfont icon-succ item btn") {
+                        count++;
+
+                    }
+                    if (itemBtns[i].length == count) {
+                        all.className = "iconfont icon-succ all btn";
+                    } else {
+                        all.className = "iconfont icon-succ all";
+                    }
+
+                }
+
             } else if (target.className == "iconfont icon-succ item btn") {
                 target.className = "iconfont icon-succ item";
                 // 取消全选

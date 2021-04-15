@@ -63,7 +63,7 @@
     {
       "id": 6,
       "Title": "围城",
-      "Author": "W3C",
+      "Author": "钱钟书",
       "Price": 10.99,
       "PubDate": "2010-01-01",
       "imgpath": "../imgs/Books/26.jpg",
@@ -75,13 +75,13 @@
     {
       "id": 7,
       "Title": "俗世奇人全本",
-      "Author": "Oracle",
+      "Author": "冯骥才",
       "Price": 20.99,
       "PubDate": "2010-02-01",
       "imgpath": "../imgs/Books/27.jpg",
       "Category": {
-        "id": 1,
-        "Name": "小说"
+        "id": 3,
+        "Name": "儿童类"
       }
     },
     {
@@ -375,23 +375,15 @@
   ],
   "users": [
     {
-      "id": 1,
-      "name": "john",
-      "password": 111111,
+      "uname": "john",
       "phone": "13253766621",
       "address": "河南省郑州市",
-      "level": 1
+      "level": 1,
+      "password": "111111",
+      "id": 1
     },
     {
-      "id": 2,
-      "name": "lily",
-      "password": 222222,
-      "phone": "13253766622",
-      "address": "河南省郑州市",
-      "level": 1
-    },
-    {
-      "name": "cookie",
+      "uname": "cookie",
       "password": "333333",
       "phone": "15684198350",
       "address": "河南省郑州市",
@@ -399,94 +391,22 @@
       "id": 3
     },
     {
-      "name": "kangkang",
+      "uname": "kangkang",
       "password": "444444",
       "phone": "13271600364",
-      "address": "河南省郑州市",
-      "level": "1",
+      "address": "山东省烟台市",
+      "level": "2",
       "id": 4
+    },
+    {
+      "name": "222",
+      "password": "2222222",
+      "phone": "13253766621",
+      "address": "山东省烟台市",
+      "level": "1",
+      "id": 5
     }
   ],
-  "carts": [
-    {
-      "bookId": "7",
-      "Title": "俗世奇人全本",
-      "number": "1",
-      "Price": "20.99",
-      "imgpath": "../imgs/Books/27.jpg",
-      "userId": "2",
-      "id": 7
-    },
-    {
-      "bookId": "3",
-      "Title": "冲积期化石·飞絮·苔莉",
-      "number": "1",
-      "Price": "30.99",
-      "imgpath": "../imgs/Books/23.jpg",
-      "userId": "2",
-      "id": 11
-    },
-    {
-      "bookId": "7",
-      "Title": "俗世奇人全本",
-      "number": "1",
-      "Price": "20.99",
-      "imgpath": "../imgs/Books/27.jpg",
-      "userId": "2",
-      "id": 12
-    },
-    {
-      "bookId": "2",
-      "Title": "南渡记",
-      "number": "1",
-      "Price": "20.99",
-      "imgpath": "../imgs/Books/22.jpg",
-      "userId": "2",
-      "id": 13
-    },
-    {
-      "bookId": "3",
-      "Title": "冲积期化石·飞絮·苔莉",
-      "number": "1",
-      "Price": "30.99",
-      "imgpath": "../imgs/Books/23.jpg",
-      "userId": "2",
-      "id": 14
-    }
-  ],
-  "orders": [
-    {
-      "id": 2,
-      "bookId": "2",
-      "Title": "南渡记",
-      "number": "1",
-      "Price": "20.99",
-      "imgpath": "../imgs/Books/22.jpg",
-      "userId": "2",
-      "payTime": "2021-03-04",
-      "isPay": "已付款"
-    },
-    {
-      "id": 3,
-      "bookId": "7",
-      "Title": "俗世奇人全本",
-      "number": "1",
-      "Price": "20.99",
-      "imgpath": "../imgs/Books/27.jpg",
-      "userId": "2",
-      "payTime": "2021-03-04",
-      "isPay": "已付款"
-    },
-    {
-      "id": 4,
-      "bookId": "9",
-      "Title": "冲积期化石·飞絮·苔莉",
-      "number": "1",
-      "Price": "30.99",
-      "imgpath": "../imgs/Books/23.jpg",
-      "userId": "2",
-      "payTime": "2021-03-04",
-      "isPay": "未付款"
-    }
-  ]
+  "carts": [],
+  "orders": []
 }
